@@ -1,13 +1,22 @@
 import Recipe from "../models/Recipe";
 import Link from "next/link";
+import Image from "next/image";
+import {Entry} from "contentful";
 
-export default function RecipeCard({recipe}: {recipe: Recipe}) {
-    const {title, slug, cookingTime} = recipe.fields;
+export default function RecipeCard({recipe}: {recipe: Entry<Recipe>}) {
+    const {title, slug, cookingTime, thumbnail} = recipe.fields;
+
+    const width = thumbnail.fields.file.details.image?.width ? thumbnail.fields.file.details.image.width : 300;
+    const height = thumbnail.fields.file.details.image?.height ? thumbnail.fields.file.details.image.height : 300;
 
     return (
         <div className={"card"}>
             <div className="featured">
-                {/* TODO: Add thumbnail */}
+                <Image
+                    src={'https:' + thumbnail.fields.file.url}
+                    alt={title}
+                    width={width}
+                    height={height}/>
             </div>
 
             <div className="content">
