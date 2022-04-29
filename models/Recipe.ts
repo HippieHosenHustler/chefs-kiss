@@ -1,4 +1,5 @@
 import {Asset} from "contentful";
+import {Document} from "@contentful/rich-text-types";
 
 export default interface Recipe {
 
@@ -6,6 +7,9 @@ export default interface Recipe {
     slug: string;
     cookingTime: number;
     thumbnail: Asset;
+    featuredImage: Asset;
+    ingredients: string[];
+    method: Document;
 
 }
 
